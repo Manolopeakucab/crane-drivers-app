@@ -9,12 +9,12 @@ const Home = () => {
 		<div className="text-center">
             
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
+			<h1 className="text-center mt-5">Hello Nigu!</h1>
 			<p>
 				<img src={rigoImage} />
 			</p>
 			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
+				If you see this green button... you're mom...
 			</a>
 			<p>
 				Made by{" "}
