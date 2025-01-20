@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
 
+//import { AuthProvider } from "react-auth-kit";
+
 //Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap"
@@ -13,7 +15,23 @@ import '../styles/index.css'
 import Home from './pages/Home';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Home/>
-  </BrowserRouter>,
+    <BrowserRouter>
+      <Home/>
+    </BrowserRouter>
 )
+
+/*
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <AuthProvider
+    authType={"cookie"}
+    authName={"_auth"}
+    cookieDomain={window.location.hostname}
+    cookieSecure={false}
+  >
+    <BrowserRouter>
+      <Home/>
+    </BrowserRouter>,
+  </AuthProvider>
+)
+
+*/

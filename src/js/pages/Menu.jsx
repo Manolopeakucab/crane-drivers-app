@@ -18,7 +18,6 @@ const Menu = ({ orders }) => {
                                     <p><strong>Incident Date/Time:</strong> {order.incidentDateTime}</p>
                                     <p><strong>Incident Location:</strong> {order.incidentLocationLat} N, {order.incidentLocationLng} W, </p>
                                     <p><strong>Destination Location:</strong> {order.destinationLocationLat} N, {order.destinationLocationLng} W</p>
-                                    <p><strong>Total Cost:</strong> {order.totalCost}</p>
                                 </Card.Body>
                             </Card>
                         </Link>
