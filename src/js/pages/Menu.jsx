@@ -1,12 +1,32 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Menu = ({ orders }) => {
+
+    axios.get('/orders', {
+        params: {
+          ID: 12345
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });  
+    
 
     return (
         <Container>
             <Col>
+                <Row>
+                    <h1 className="text-center my-2">GruasUCABPico</h1>
+                </Row>
                 {orders.map((order) => (
                     <Row className="row-md-4" key={order.id}>
                         <Link to={`/orderSelected/${order.id}`}>

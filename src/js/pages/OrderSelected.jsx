@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button, Table } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Table, Accordion } from 'react-bootstrap';
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import RateKMModal from '../components/ratekm/rateKMModal';
 import AddExtraCostModal from '../components/extracost/addExtraCostModal';
 import { useNavigate, useParams } from 'react-router-dom';
+import AlertCanceledOrder from '../components/alertCanceledOrder';
 
 const OrderSelected = () => {
 
@@ -33,11 +34,20 @@ const OrderSelected = () => {
         { id: 3, name: 'Loading/Unloading', price: 30, description: 'Cost for loading and unloading the goods' }
     ];
 
+    const handleCancel = () => {
+        console.log('Order cancelled');
+        navigate("/");
+        return <AlertCanceledOrder />;
+    };
+
     return (
-        <Container>
+        <Container className="mt-2">
             <Row>
                 <Col>
                     <Row>
+                        <Col>
+                            <Button variant="light" ><span>&lt;</span></Button>
+                        </Col>
                         <Col>
                             <h2>Orden {orderId}</h2>
                         </Col>
@@ -45,28 +55,30 @@ const OrderSelected = () => {
                             <RateKMModal />
                         </Col>
                     </Row>
-                    <APIProvider apiKey={'AIzaSyCBZK2rXSKMDn9vM9d7f9LJ4G-MHwywJW4'}>
-                        <Map
-                        style={{width: '90%', height: '250px'}}
-                        defaultCenter={{lat: order.incidentLocationLat, lng: order.incidentLocationLng}}
-                        defaultZoom={6}
-                        gestureHandling={'greedy'}
-                        disableDefaultUI={true}>
-                            <Marker position={{lat: order.incidentLocationLat, lng: order.incidentLocationLng}} label="Incident Location" />
-                            <Marker position={{lat: order.destinationLocationLat, lng: order.destinationLocationLng}} label="Destination Location" />
-                        </Map>
-                    </APIProvider>
+                    <Row className="mt-2 justify-content-center">
+                        <APIProvider apiKey={'AIzaSyCBZK2rXSKMDn9vM9d7f9LJ4G-MHwywJW4'}>
+                            <Map
+                            style={{width: '90%', height: '250px'}}
+                            defaultCenter={{lat: order.incidentLocationLat, lng: order.incidentLocationLng}}
+                            defaultZoom={6}
+                            gestureHandling={'greedy'}
+                            disableDefaultUI={true}>
+                                <Marker position={{lat: order.incidentLocationLat, lng: order.incidentLocationLng}} label="Incident Location" />
+                                <Marker position={{lat: order.destinationLocationLat, lng: order.destinationLocationLng}} label="Destination Location" />
+                            </Map>
+                        </APIProvider>
+                    </Row>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Card className="my-4 mx-3" style={{ width: "90%" }}>
-                    <Card.Body className="card-body">
-                        <Card.Title>
-                            Contrato del cliente
-                        </Card.Title>
-                        <p>Placeholder</p>
-                    </Card.Body>
-                </Card>
+                <Accordion className="my-4 mx-3" style={{ width: "90%" }}>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Contrato del cliente</Accordion.Header>
+                        <Accordion.Body className="accordion-body">
+                            <p>Placeholder</p>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
             </Row>
             <Row>
                 <Col xs={10}><h2>Agregar costo extra</h2></Col>
@@ -101,7 +113,7 @@ const OrderSelected = () => {
             <Row>
                 <Col>
                     <Button variant="success" onClick={() => navigate(`/orderInProgress/${orderId}`)}>Aceptar orden</Button>
-                    <Button variant="danger" onClick={() => console.log('Order cancelled')} className="ml-2">Cancelar orden</Button>
+                    <Button variant="danger" onClick={() => handleCancel()} className="ml-2">Cancelar orden</Button>
                 </Col>
             </Row>
         </Container>

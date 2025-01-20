@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const OrderInProgress = () => {
     
@@ -45,6 +45,11 @@ const OrderInProgress = () => {
                     <Spinner animation="border" role="status">
                         <span className="sr-only"></span>
                     </Spinner>
+                </Col>
+            </Row>
+            <Row className="mt-5">
+                <Col>
+                    <Link to={`/orderFinished/${order.id}`}><Button variant="success">Finalizar orden</Button></Link>
                 </Col>
             </Row>
             <Row className="mt-5">
