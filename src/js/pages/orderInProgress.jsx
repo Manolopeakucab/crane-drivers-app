@@ -54,7 +54,7 @@ const OrderInProgress = () => {
             </Row>
             <Row className="mt-5">
                 <Col>
-                    <Button variant="danger">Cancelar orden</Button>
+                    <Link to={`/orderCanceled/${order.id}`}><Button variant="danger">Cancelar orden</Button></Link>
                 </Col>
             </Row>
         </Container>

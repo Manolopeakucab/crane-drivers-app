@@ -1,14 +1,22 @@
 import React from "react";
 import { Route, Routes, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 import Menu from "./Menu";
 import OrderSelected from "./OrderSelected";
 import OrderInProgress from "./orderInProgress";
 import OrderFinished from "./OrderFinished";
+import OrderCanceled from "./OrderCanceled";
 import Login from "./Login";
 
 //create your first component
 const Home = () => {
+
+	const instance = axios.create({
+		baseURL: 'https://localhost',
+		timeout: 1000,
+		headers: {'X-Custom-Header': 'foobar'}
+	  });
 
 	const orders = [
 		{
@@ -62,15 +70,11 @@ const Home = () => {
 			<Routes>
 				<Route index element={ <Menu orders={orders}/>} />
 				<Route path="/orderSelected/:orderId" element={<OrderSelected />} />
-				<Route path="/orderInProgress/:orderId" element={<OrderInProgress order={orders[1]}/>} />
+				<Route path="/orderInProgress/:orderId" element={<OrderInProgress />} />
 				<Route path="/orderFinished/:orderID" element={<OrderFinished />} />
+				<Route path="/orderCanceled/:orderID" element={<OrderCanceled />} />
 				<Route path="/login" element={<Login />} />
 			</Routes>
-			<footer>
-				<NavLink to="/login">Login (si)</NavLink>
-				<NavLink to="/orderInProgress">Usuarios</NavLink>
-				<NavLink to="/orderFinished">Proveedores</NavLink>
-			</footer>
 		</>
 	);
 };

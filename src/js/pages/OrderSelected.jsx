@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button, Table, Accordion } from 'react-boots
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import RateKMModal from '../components/ratekm/rateKMModal';
 import AddExtraCostModal from '../components/extracost/addExtraCostModal';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import AlertCanceledOrder from '../components/alertCanceledOrder';
 
 const OrderSelected = () => {
@@ -46,7 +46,7 @@ const OrderSelected = () => {
                 <Col>
                     <Row>
                         <Col>
-                            <Button variant="light" ><span>&lt;</span></Button>
+                            <Link to="/"><Button variant="light" ><span>&lt;</span></Button></Link>
                         </Col>
                         <Col>
                             <h2>Orden {orderId}</h2>
@@ -70,25 +70,15 @@ const OrderSelected = () => {
                     </Row>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
-                <Accordion className="my-4 mx-3" style={{ width: "90%" }}>
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header>Contrato del cliente</Accordion.Header>
-                        <Accordion.Body className="accordion-body">
-                            <p>Placeholder</p>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-            </Row>
-            <Row>
+            <Row className="mt-4">
                 <Col xs={10}><h2>Agregar costo extra</h2></Col>
                 <Col xs={2}>
                     <AddExtraCostModal />
                 </Col>
             </Row>
-            <Row>
+            <Row className="justify-content-center mt-1">
                 {extraCosts.length > 0 ? (
-                    <Table striped bordered hover>
+                    <Table striped bordered hover style={{ width: "90%"}}>
                         <thead>
                             <tr>
                                 <th>Nombre</th>

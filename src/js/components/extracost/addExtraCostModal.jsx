@@ -29,7 +29,7 @@ const AddExtraCostModal = () => {
                     <Modal.Title>Agregar costo extra</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} style={{ width: '80%' }}>
                         <Form.Group controlId="formName">
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control
