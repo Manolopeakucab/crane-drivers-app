@@ -3,6 +3,7 @@ import { Route, Routes, NavLink } from 'react-router-dom';
 
 import Menu from "./Menu";
 import OrderSelected from "./OrderSelected";
+import OrderInProgress from "./orderInProgress";
 import Login from "./Login";
 
 //create your first component
@@ -59,11 +60,11 @@ const Home = () => {
 		<>
 			<Routes>
 				<Route index element={ <Menu orders={orders}/>} />
-				<Route path="orderSelected" element={<OrderSelected order={orders[1]}/>} />
-				<Route path="orderInProgress" element={<Menu orders={orders}/>} />
-				<Route path="orderFinished" element={<Menu orders={orders}/>} />
-				<Route path="login" element={<Login />} />
-				</Routes>
+				<Route path="/orderSelected/:orderId" element={<OrderSelected />} />
+				<Route path="/orderInProgress/:orderId" element={<OrderInProgress order={orders[1]}/>} />
+				<Route path="/orderFinished/:orderID" element={<Menu orders={orders}/>} />
+				<Route path="/login" element={<Login />} />
+			</Routes>
 			<footer>
 				<NavLink to="/login">Login (si)</NavLink>
 				<NavLink to="/orderInProgress">Usuarios</NavLink>

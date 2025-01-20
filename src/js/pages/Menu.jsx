@@ -9,7 +9,7 @@ const Menu = ({ orders }) => {
             <Col>
                 {orders.map((order) => (
                     <Row className="row-md-4" key={order.id}>
-                        <Link to="/orderSelected">
+                        <Link to={`/orderSelected/${order.id}`}>
                             <Card className="mb-4">
                                 <Card.Body className="card-body">
                                     <Card.Title>

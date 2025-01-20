@@ -3,8 +3,29 @@ import { Container, Row, Col, Card, Button, Table } from 'react-bootstrap';
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import RateKMModal from '../components/ratekm/rateKMModal';
 import AddExtraCostModal from '../components/extracost/addExtraCostModal';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const OrderSelected = ({ order }) => {
+const OrderSelected = () => {
+
+    const navigate = useNavigate();
+    const { orderId } = useParams();
+    console.log("yeah" + orderId);
+
+    const order = {
+        id: 1,
+        contract: "Contract A",
+        driverAssigned: "Driver 1",
+        operator: "Operator 1",
+        incidentLocationLat: 53.54992,
+        incidentLocationLng: 10.00678,
+        destinationLocationLat: 54.54992,
+        destinationLocationLng: 10.10678,
+        incidentDateTime: "2023-10-01T10:00:00Z",
+        totalCost: 1000,
+        extraCostApplied: 50,
+        ratesPerKm: 5,
+        orderStatus: "Pending"
+    };
 
     const extraCosts = [
         { id: 1, name: 'Fuel Surcharge', price: 50, description: 'Additional fuel cost due to long distance' },
@@ -18,7 +39,7 @@ const OrderSelected = ({ order }) => {
                 <Col>
                     <Row>
                         <Col>
-                            <h2>Orden {order.id}</h2>
+                            <h2>Orden {orderId}</h2>
                         </Col>
                         <Col className="justify-content-md-end">
                             <RateKMModal />
@@ -79,7 +100,7 @@ const OrderSelected = ({ order }) => {
             </Row>
             <Row>
                 <Col>
-                    <Button variant="success" onClick={() => console.log('Order accepted')}>Aceptar orden</Button>
+                    <Button variant="success" onClick={() => navigate(`/orderInProgress/${orderId}`)}>Aceptar orden</Button>
                     <Button variant="danger" onClick={() => console.log('Order cancelled')} className="ml-2">Cancelar orden</Button>
                 </Col>
             </Row>
